@@ -30,6 +30,7 @@ class FileFetcher {
 
   public function fetch($version, $destination) {
     array_walk($this->filenames, function ($filename) use ($version, $destination) {
+      echo PHP_EOL . "Downloading '$filename''" . PHP_EOL;
       $url = $this->getUri($filename, $version);
       $this->fs->ensureDirectoryExists($destination . '/' . dirname($filename));
       $this->remoteFilesystem->copy($url, $url, $destination . '/' . $filename);
